@@ -25,6 +25,7 @@ To run the application on common Linux distributions, execute:
 
 ::
 
+    pip install -r requirements.txt
     sh ./scripts/run_example.sh
 
 This will install all the dependencies and start the server. If this script
@@ -71,7 +72,7 @@ To run the tests on common Linux distributions, execute:
 
     sh ./scripts/tests.sh
 
-If this script cannot be run on your platform, follow the steps in _`Examples`. 
+If this script cannot be run on your platform, follow the steps in _`Examples`.
 Ensure that the following packages are on your ```PYTHONPATH``:
 
     * The App Engine SDK
