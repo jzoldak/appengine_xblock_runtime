@@ -16,6 +16,10 @@
 
 __author__ = 'John Orr (jorr@google.com)'
 
+# Add the library location to the path
+import sys
+sys.path.insert(0, 'lib')
+
 import webapp2
 
 # The following import is needed in order to add third-party libraries
@@ -23,12 +27,16 @@ import webapp2
 import appengine_config  # pylint: disable-msg=unused-import
 
 import handlers
+from oauth.handler import OAUTH_ROUTES
 
-
-app = webapp2.WSGIApplication([
+MAIN_ROUTES = [
     ('/handler/(\d*)/(.*)/', handlers.XBlockEndpointHandler),
     ('/display_xblock', handlers.DisplayXblockPageHandler),
     ('/rest/xblock', handlers.XblockRestHandler),
     ('/rest/xblock/(\d*)', handlers.XblockRestHandler),
-    ('/.*', handlers.DefaultPageHandler)
-], debug=True)
+    ('/.*', handlers.DefaultPageHandler),
+]
+
+ROUTES = OAUTH_ROUTES + MAIN_ROUTES
+
+app = webapp2.WSGIApplication(ROUTES, debug=True)
