@@ -27,6 +27,7 @@ import webapp2
 from workbench.runtime import _BlockSet
 from xblock.fragment import Fragment
 from google.appengine.api import users
+import util
 
 
 class WorkbenchRuntime(appengine_xblock_runtime.runtime.Runtime):
@@ -105,6 +106,7 @@ class BasePageHandler(webapp2.RequestHandler):
 class DefaultPageHandler(BasePageHandler):
     """Display the default landing page."""
 
+    @util.auth_required
     def get(self):
         template_values = {
             'email': users.get_current_user().nickname(),
